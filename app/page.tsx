@@ -49,28 +49,28 @@ export default function Home() {
     <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 pb-20 pt-6 sm:px-8 lg:px-10">
       <header className="mb-10 flex items-center justify-between rounded-full border border-[var(--color-border)] bg-[rgba(255,250,246,0.72)] px-4 py-3 backdrop-blur-sm sm:px-6">
         <div>
-          <p className="font-display text-3xl leading-none tracking-tight text-[var(--color-foreground)]">
+          <p className="font-display text-3xl leading-none tracking-tight text-[var(--color-accent)]">
             Pestro3D
           </p>
         </div>
 
         <nav className="hidden items-center gap-8 text-sm text-[var(--color-muted)] md:flex">
-          <a href="#how-it-works">How it works</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#gifting">Gifting</a>
-          <a href="#faq">FAQ</a>
+          <a href="#how-it-works" className="hover:text-[var(--color-accent)] text-sm text-[var(--color-muted)]">How it works</a>
+          <a href="#gallery" className="hover:text-[var(--color-accent)] text-sm text-[var(--color-muted)]">Gallery</a>
+          <a href="#gifting" className="hover:text-[var(--color-accent)] text-sm text-[var(--color-muted)]">Gifting</a>
+          <a href="#faq" className="hover:text-[var(--color-accent)] text-sm text-[var(--color-muted)]">FAQ</a>
           <Link href="/cart">Cart</Link>
           <Link href="/orders">Orders</Link>
           <Link href="/admin">Admin</Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/orders" className="rounded-full border border-[var(--color-border)] bg-white/60 px-4 py-2 text-sm font-medium text-[var(--color-foreground)]">
+          <Link href="/orders" className="rounded-full border border-[var(--color-border)] bg-white/60 px-4 py-2 text-sm font-medium text-[var(--color-muted)]">
             My orders
           </Link>
           <Link
             href="/shop"
-            className="rounded-full bg-[var(--color-foreground)] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(32,27,24,0.18)] hover:-translate-y-0.5 hover:bg-[var(--color-accent)]"
+            className="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(76,28,92,0.2)] hover:-translate-y-0.5 hover:bg-[#6a2c8c]"
           >
             Send us a photo
           </Link>

@@ -14,7 +14,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 py-8 sm:px-8 lg:px-10">
       <div className="mb-8 flex items-center justify-between">
-        <Link href="/shop" className="text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-foreground)]">
+        <Link href="/shop" className="text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-accent)]">
           ← Back to shop
         </Link>
         <span className="rounded-full border border-[var(--color-border)] bg-white/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
@@ -35,11 +35,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
               Gift-ready custom piece
             </p>
-            <h1 className="mt-3 text-5xl text-[var(--color-foreground)]">{product.name}</h1>
+            <h1 className="mt-3 text-5xl text-[var(--color-accent)]">{product.name}</h1>
             <p className="mt-4 text-lg text-[var(--color-muted)]">{product.tagline}</p>
             <div className="mt-5 flex items-center gap-4">
               <span className="font-display text-4xl text-[var(--color-foreground)]">₹{product.basePrice}</span>
-              <span className="rounded-full bg-[var(--color-accent-soft)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">
+              <span className="rounded-full bg-[var(--color-accent-light)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">
                 Premium resin
               </span>
             </div>
@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             {product.reviews.map((review: { name: string; title: string; quote: string }) => (
               <div key={review.name} className="rounded-[1.1rem] border border-[var(--color-border)] bg-white/35 p-4">
                 <div className="mb-2 flex items-center justify-between gap-5">
-                  <span className="font-semibold text-[var(--color-foreground)]">{review.name}</span>
+                  <span className="font-semibold text-[var(--color-accent)]">{review.name}</span>
                   <span className="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">{review.title}</span>
                 </div>
                 <p className="text-[var(--color-muted)]">“{review.quote}”</p>
@@ -76,7 +76,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="mt-5 space-y-4">
             {product.faqs.map((item: { question: string; answer: string }) => (
               <div key={item.question} className="rounded-[1rem] border border-[var(--color-border)] bg-white/30 p-4">
-                <h3 className="text-lg text-[var(--color-foreground)]">{item.question}</h3>
+                <h3 className="text-lg text-[var(--color-accent)]">{item.question}</h3>
                 <p className="mt-2 text-[var(--color-muted)]">{item.answer}</p>
               </div>
             ))}

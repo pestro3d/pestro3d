@@ -25,16 +25,16 @@ export default function ProductCustomizer({ product }: { product: Product }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.5)] p-5">
+    <form onSubmit={handleSubmit} className="space-y-6 rounded-[1.7rem] border border-[#d4c4e8] bg-[rgba(244,236,250,0.5)] p-5">
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Product details
         </p>
-        <h3 className="text-3xl text-[var(--color-foreground)]">{product.name}</h3>
+        <h3 className="text-3xl text-[#4c1c5c]">{product.name}</h3>
       </div>
 
       <div className="space-y-3">
-        <label className="block text-sm font-medium text-[var(--color-foreground)]">Choose size</label>
+        <label className="block text-sm font-medium text-[#4c1c5c]">Choose size</label>
         <div className="grid gap-3 sm:grid-cols-3">
           {product.variants.map((variant: { id: string; label: string; size: string; price: number; turnaround: string }) => (
             <button
@@ -44,8 +44,8 @@ export default function ProductCustomizer({ product }: { product: Product }) {
               className={[
                 "rounded-[1rem] border px-3 py-3 text-left",
                 selectedVariant === variant.id
-                  ? "border-[var(--color-accent)] bg-[var(--color-accent-soft)] text-[var(--color-foreground)]"
-                  : "border-[var(--color-border)] bg-white/40 text-[var(--color-muted)]",
+                  ? "border-[#4c1c5c] bg-[#d4c4e8] text-[#4c1c5c]"
+                  : "border-[#d4c4e8] bg-white/40 text-[var(--color-muted)]",
               ].join(" ")}
             >
               <div className="text-sm font-semibold">{variant.label}</div>
@@ -73,7 +73,7 @@ export default function ProductCustomizer({ product }: { product: Product }) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="occasion" className="mb-2 block text-sm font-medium text-[var(--color-foreground)]">
+          <label className="mb-2 block text-sm font-medium text-[#4c1c5c]">
             Occasion
           </label>
           <select
@@ -92,7 +92,7 @@ export default function ProductCustomizer({ product }: { product: Product }) {
         </div>
 
         <div>
-          <label htmlFor="gift-message" className="mb-2 block text-sm font-medium text-[var(--color-foreground)]">
+          <label htmlFor="gift-message" className="mb-2 block text-sm font-medium text-[#4c1c5c]">
             Gift message
           </label>
           <input
@@ -106,7 +106,7 @@ export default function ProductCustomizer({ product }: { product: Product }) {
       </div>
 
       <div>
-        <label htmlFor="notes" className="mb-2 block text-sm font-medium text-[var(--color-foreground)]">
+        <label htmlFor="notes" className="mb-2 block text-sm font-medium text-[#4c1c5c]">
           Special notes
         </label>
         <textarea
@@ -119,24 +119,24 @@ export default function ProductCustomizer({ product }: { product: Product }) {
         />
       </div>
 
-      <div className="rounded-[1.1rem] border border-[var(--color-border)] bg-white/35 p-4">
+      <div className="rounded-[1.1rem] border border-[#d4c4e8] bg-white/35 p-4">
         <div className="flex items-center justify-between gap-3 text-sm">
           <span className="text-[var(--color-muted)]">Selected size</span>
-          <span className="font-semibold text-[var(--color-foreground)]">{activeVariant.label}</span>
+        <span className="font-semibold text-[#4c1c5c]">{activeVariant.label}</span>
         </div>
         <div className="mt-3 flex items-center justify-between gap-3 text-sm">
           <span className="text-[var(--color-muted)]">Delivery</span>
-          <span className="font-semibold text-[var(--color-foreground)]">{activeVariant.turnaround}</span>
+        <span className="font-semibold text-[#4c1c5c]">{activeVariant.turnaround}</span>
         </div>
-        <div className="mt-3 flex items-center justify-between gap-3 border-t border-[var(--color-border)] pt-3">
-          <span className="text-lg font-semibold text-[var(--color-foreground)]">Total</span>
-          <span className="text-2xl font-semibold text-[var(--color-foreground)]">₹{activeVariant.price}</span>
+      <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#d4c4e8] pt-3">
+        <span className="text-lg font-semibold text-[#4c1c5c]">Total</span>
+        <span className="text-2xl font-semibold text-[#4c1c5c]">₹{activeVariant.price}</span>
         </div>
       </div>
 
       <button
         type="submit"
-        className="w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(157,95,63,0.2)] hover:-translate-y-0.5 hover:bg-[#874e35]"
+        className="w-full rounded-full bg-[#4c1c5c] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(76,28,92,0.2)] hover:-translate-y-0.5 hover:bg-[#6a2c8c]"
       >
         {submitted ? "Order details saved" : "Add to cart"}
       </button>

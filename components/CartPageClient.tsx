@@ -68,58 +68,58 @@ export default function CartPageClient() {
           ))}
         </section>
 
-        <aside className="rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.48)] p-5">
-          <h2 className="text-2xl text-[var(--color-foreground)]">Order summary</h2>
+        <aside className="rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(244,236,250,0.7)] p-5">
+          <h2 className="text-2xl text-[#4c1c5c]">Order summary</h2>
 
-          <div className="mt-5 rounded-[1.2rem] border border-[var(--color-border)] bg-white/40 p-4">
+          <div className="mt-5 rounded-[1.2rem] border border-[#d4c4e8] bg-white/40 p-4">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted)]">Items</p>
             <div className="space-y-2 text-sm text-[var(--color-muted)]">
               {items.map((item) => (
-                <div key={item.id} className="flex items-center gap-3 rounded-[0.9rem] border border-[var(--color-border)] bg-white/50 p-2">
-                  <div className="h-10 w-10 rounded-[0.85rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2 flex items-center justify-center flex-shrink-0">
-                    <div className="h-5 w-4 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)]" />
+                <div key={item.id} className="flex items-center gap-3 rounded-[0.9rem] border border-[#d4c4e8] bg-white/50 p-2">
+                  <div className="h-10 w-10 rounded-[0.85rem] bg-[linear-gradient(180deg,#f4ecfa_0%,#d4c4e8_38%,#4c1c5c_100%)] p-2 flex items-center justify-center flex-shrink-0">
+                    <div className="h-5 w-4 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4ecfa_0%,#d4c4e8_58%,#4c1c5c_100%)]" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-[var(--color-foreground)]">{item.title}</p>
+                    <p className="text-sm font-semibold text-[#4c1c5c]">{item.title}</p>
                     <p className="text-xs text-[var(--color-muted)]">{item.variant} • hand-painted</p>
                   </div>
-                  <span className="text-sm font-semibold text-[var(--color-foreground)]">₹{item.price}</span>
+                  <span className="text-sm font-semibold text-[#4c1c5c]">₹{item.price}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-5 rounded-[1.2rem] border border-[var(--color-border)] bg-white/35 p-4">
-            <label htmlFor="discount-code" className="mb-2 block text-sm font-medium text-[var(--color-foreground)]">
+          <div className="mt-5 rounded-[1.2rem] border border-[#d4c4e8] bg-white/35 p-4">
+            <label htmlFor="discount-code" className="mb-2 block text-sm font-medium text-[#4c1c5c]">
               Discount code
             </label>
             <input
               id="discount-code"
               value={discountCode}
               onChange={(event) => setDiscountCode(event.target.value)}
-              className="w-full rounded-[0.8rem] border border-[var(--color-border)] bg-white/60 px-3 py-2.5 text-sm text-[var(--color-foreground)] outline-none"
+              className="w-full rounded-[0.8rem] border border-[#d4c4e8] bg-white/60 px-3 py-2.5 text-sm text-[#4c1c5c] outline-none"
               placeholder="WELCOME10"
             />
           </div>
 
-          <label className="mt-5 flex items-center justify-between gap-3 rounded-[1.1rem] border border-[var(--color-border)] bg-white/35 p-4 text-sm text-[var(--color-foreground)]">
+          <label className="mt-5 flex items-center justify-between gap-3 rounded-[1.1rem] border border-[#d4c4e8] bg-white/35 p-4 text-sm text-[#4c1c5c]">
             <span>Apply wallet credit</span>
             <input
               type="checkbox"
               checked={walletApplied}
               onChange={(event) => setWalletApplied(event.target.checked)}
-              className="h-4 w-4 accent-[var(--color-accent)]"
+              className="h-4 w-4 accent-[#4c1c5c]"
             />
           </label>
 
-          <div className="mt-5 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
-            <span className="text-lg font-semibold text-[var(--color-foreground)]">Total</span>
-            <span className="text-2xl font-semibold text-[var(--color-foreground)]">₹{totals.total}</span>
+          <div className="mt-5 flex items-center justify-between border-t border-[#d4c4e8] pt-4">
+            <span className="text-lg font-semibold text-[#4c1c5c]">Total</span>
+            <span className="text-2xl font-semibold text-[#4c1c5c]">₹{totals.total}</span>
           </div>
 
           <Link
             href="/checkout"
-            className="mt-6 flex w-full items-center justify-center rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(157,95,63,0.2)] hover:-translate-y-0.5 hover:bg-[#874e35]"
+            className="mt-6 flex w-full items-center justify-center rounded-full bg-[#4c1c5c] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(76,28,92,0.2)] hover:-translate-y-0.5 hover:bg-[#6a2c8c]"
           >
             Proceed to checkout
           </Link>

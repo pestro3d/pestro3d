@@ -85,44 +85,44 @@ export default function CheckoutPageClient() {
           </div>
         </section>
 
-        <aside className="rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.48)] p-5">
-          <h2 className="text-2xl text-[var(--color-foreground)]">Summary</h2>
+        <aside className="rounded-[1.7rem] border border-[#d4c4e8] bg-[rgba(244,236,250,0.48)] p-5">
+          <h2 className="text-2xl text-[#4c1c5c]">Summary</h2>
 
-          <div className="mt-5 space-y-4 rounded-[1.2rem] border border-[var(--color-border)] bg-white/30 p-4">
-            <div className="flex items-center gap-4 rounded-[1rem] border border-[var(--color-border)] bg-white/50 p-3">
-              <div className="h-16 w-12 rounded-[1.1rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2 flex items-center justify-center">
-                <div className="h-8 w-6 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)]" />
+          <div className="mt-5 space-y-4 rounded-[1.2rem] border border-[#d4c4e8] bg-white/30 p-4">
+            <div className="flex items-center gap-4 rounded-[1rem] border border-[#d4c4e8] bg-white/50 p-3">
+              <div className="h-16 w-12 rounded-[1.1rem] bg-[linear-gradient(180deg,#f4ecfa_0%,#d4c4e8_38%,#4c1c5c_100%)] p-2 flex items-center justify-center">
+                <div className="h-8 w-6 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4ecfa_0%,#d4c4e8_58%,#4c1c5c_100%)]" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-[var(--color-foreground)]">Miniature Portrait</p>
+                <p className="text-sm font-semibold text-[#4c1c5c]">Miniature Portrait</p>
                 <p className="text-xs text-[var(--color-muted)]">12 cm • hand-painted finish</p>
               </div>
-              <span className="text-lg font-semibold text-[var(--color-foreground)]">₹4700</span>
+              <span className="text-lg font-semibold text-[#4c1c5c]">₹4700</span>
             </div>
             <div className="flex items-center justify-between">
-              <span>Welcome offer</span>
-              <span className="text-[var(--color-foreground)]">-₹{totals.welcomeDiscountValue}</span>
+              <span className="text-[var(--color-muted)]">Welcome offer</span>
+              <span className="text-[#4c1c5c]">-₹{totals.welcomeDiscountValue}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span>Wallet credit</span>
-              <span className="text-[var(--color-foreground)]">-₹{totals.walletValue}</span>
+              <span className="text-[var(--color-muted)]">Wallet credit</span>
+              <span className="text-[#4c1c5c]">-₹{totals.walletValue}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span>Shipping</span>
-              <span className="text-[var(--color-foreground)]">₹{totals.shipping}</span>
+              <span className="text-[var(--color-muted)]">Shipping</span>
+              <span className="text-[#4c1c5c]">₹{totals.shipping}</span>
             </div>
           </div>
 
-          <div className="mt-6 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
-            <span className="text-lg font-semibold text-[var(--color-foreground)]">Due today</span>
-            <span className="text-2xl font-semibold text-[var(--color-foreground)]">₹{totals.total}</span>
+          <div className="mt-6 flex items-center justify-between border-t border-[#d4c4e8] pt-4">
+            <span className="text-lg font-semibold text-[#4c1c5c]">Due today</span>
+            <span className="text-2xl font-semibold text-[#4c1c5c]">₹{totals.total}</span>
           </div>
 
           <button
             type="button"
             disabled={totals.total <= 0 || isProcessing}
             onClick={handleCheckout}
-            className="mt-6 w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(157,95,63,0.2)] hover:-translate-y-0.5 hover:bg-[#874e35] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-6 w-full rounded-full bg-[#4c1c5c] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(76,28,92,0.2)] hover:-translate-y-0.5 hover:bg-[#6a2c8c] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isProcessing ? "Processing..." : submitted ? "Order placed" : "Pay now"}
           </button>

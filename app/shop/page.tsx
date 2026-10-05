@@ -8,7 +8,7 @@ export default function ShopPage() {
       <header className="mb-8 flex items-center justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">Store</p>
-          <h1 className="mt-2 text-5xl text-[var(--color-foreground)]">Choose your keepsake.</h1>
+          <h1 className="mt-2 text-5xl text-[var(--color-accent)]">Choose your keepsake.</h1>
         </div>
         <Link
           href="/"
@@ -23,7 +23,7 @@ export default function ShopPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
             What you can order
           </p>
-          <h2 className="mt-3 text-3xl text-[var(--color-foreground)]">One premium product line, tailored to your memory.</h2>
+          <h2 className="mt-3 text-3xl text-[var(--color-accent)]">One premium product line, tailored to your memory.</h2>
           <p className="mt-4 max-w-xl text-[var(--color-muted)]">
             Our miniature portrait experience is designed for weddings, anniversaries, personal milestones, and heartfelt gifts. Every piece starts with a photo, goes through a preview step, and only begins production after approval.
           </p>

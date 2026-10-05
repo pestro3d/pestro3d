@@ -33,7 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-[var(--color-background)] text-[var(--color-foreground)]">
         <header className="sticky top-0 z-50 flex items-center justify-between border-b border-[var(--color-border)] bg-white/80 backdrop-blur-md px-6 py-4">
-          <Link href="/" className="text-2xl font-semibold tracking-tight text-[var(--color-foreground)]">
+          <Link href="/" className="text-2xl font-semibold tracking-tight text-[var(--color-accent)]">
             Pestro3D
           </Link>
           <nav className="flex items-center gap-6 text-sm font-medium text-[var(--color-muted)]">
