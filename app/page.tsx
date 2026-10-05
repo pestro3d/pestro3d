@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const steps = [
   {
     title: "Upload your photo",
@@ -57,14 +59,22 @@ export default function Home() {
           <a href="#gallery">Gallery</a>
           <a href="#gifting">Gifting</a>
           <a href="#faq">FAQ</a>
+          <Link href="/cart">Cart</Link>
+          <Link href="/orders">Orders</Link>
+          <Link href="/admin">Admin</Link>
         </nav>
 
-        <a
-          href="#order"
-          className="rounded-full bg-[var(--color-foreground)] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(32,27,24,0.18)] hover:-translate-y-0.5 hover:bg-[var(--color-accent)]"
-        >
-          Send us a photo
-        </a>
+        <div className="flex items-center gap-3">
+          <Link href="/orders" className="rounded-full border border-[var(--color-border)] bg-white/60 px-4 py-2 text-sm font-medium text-[var(--color-foreground)]">
+            My orders
+          </Link>
+          <Link
+            href="/shop"
+            className="rounded-full bg-[var(--color-foreground)] px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(32,27,24,0.18)] hover:-translate-y-0.5 hover:bg-[var(--color-accent)]"
+          >
+            Send us a photo
+          </Link>
+        </div>
       </header>
 
       <section className="grid items-center gap-10 pb-16 pt-8 lg:grid-cols-[1.08fr_0.92fr] lg:pb-20">
@@ -84,18 +94,18 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#order"
+            <Link
+              href="/shop"
               className="rounded-full bg-[var(--color-accent)] px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_18px_30px_rgba(157,95,63,0.24)] hover:-translate-y-0.5 hover:bg-[#874e35]"
             >
               Start your order
-            </a>
-            <a
-              href="#gallery"
+            </Link>
+            <Link
+              href="/shop"
               className="rounded-full border border-[var(--color-border)] bg-white/60 px-6 py-3 text-center text-sm font-semibold text-[var(--color-foreground)] hover:border-transparent hover:bg-white"
             >
               See examples
-            </a>
+            </Link>
           </div>
 
           <div className="flex flex-wrap items-center gap-8 pt-2 text-sm text-[var(--color-muted)]">
@@ -261,6 +271,24 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <footer className="mt-8 border-t border-[var(--color-border)] pt-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-display text-3xl text-[var(--color-foreground)]">Pestro3D</p>
+            <p className="mt-2 text-sm text-[var(--color-muted)]">Custom miniature keepsakes made to feel personal.</p>
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-sm text-[var(--color-muted)]">
+            <Link href="/corporate">Corporate gifting</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/shipping">Shipping</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
