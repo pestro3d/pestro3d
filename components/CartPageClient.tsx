@@ -45,7 +45,9 @@ export default function CartPageClient() {
         <section className="space-y-5">
           {items.map((item) => (
             <article key={item.id} className="flex flex-col gap-4 rounded-[1.6rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.45)] p-4 sm:flex-row sm:items-center">
-              <div className="h-28 w-full rounded-[1.2rem] bg-[linear-gradient(180deg,#f3e5d9_0%,#d9b08c_38%,#714437_100%)] sm:w-28" />
+              <div className="h-28 w-full rounded-[1.2rem] bg-[linear-gradient(180deg,#f3e5d9_0%,#d9b08c_38%,#714437_100%)] sm:w-28 flex items-center justify-center sm:min-w-[112px]">
+                <div className="h-16 w-10 rounded-[50%_50%_45%_55%/55%_55%_50%_50%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)] shadow-[0_8px_12px_rgba(46,26,18,0.18)]" />
+              </div>
 
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-3">
@@ -69,22 +71,21 @@ export default function CartPageClient() {
         <aside className="rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.48)] p-5">
           <h2 className="text-2xl text-[var(--color-foreground)]">Order summary</h2>
 
-          <div className="mt-5 space-y-3 text-sm text-[var(--color-muted)]">
-            <div className="flex items-center justify-between">
-              <span>Subtotal</span>
-              <span className="text-[var(--color-foreground)]">₹{totals.subtotal}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Welcome offer</span>
-              <span className="text-[var(--color-foreground)]">-₹{totals.welcomeDiscountValue}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Wallet credit</span>
-              <span className="text-[var(--color-foreground)]">-₹{totals.walletValue}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Shipping</span>
-              <span className="text-[var(--color-foreground)]">₹{totals.shipping}</span>
+          <div className="mt-5 rounded-[1.2rem] border border-[var(--color-border)] bg-white/40 p-4">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted)]">Items</p>
+            <div className="space-y-2 text-sm text-[var(--color-muted)]">
+              {items.map((item) => (
+                <div key={item.id} className="flex items-center gap-3 rounded-[0.9rem] border border-[var(--color-border)] bg-white/50 p-2">
+                  <div className="h-10 w-10 rounded-[0.85rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2 flex items-center justify-center flex-shrink-0">
+                    <div className="h-5 w-4 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)]" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-[var(--color-foreground)]">{item.title}</p>
+                    <p className="text-xs text-[var(--color-muted)]">{item.variant} • hand-painted</p>
+                  </div>
+                  <span className="text-sm font-semibold text-[var(--color-foreground)]">₹{item.price}</span>
+                </div>
+              ))}
             </div>
           </div>
 

@@ -13,8 +13,10 @@ export default function ProductCustomizer({ product }: { product: Product }) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const activeVariant =
-    product.variants.find((variant) => variant.id === selectedVariant) ?? product.variants[0];
+  const activeVariant = product.variants.find((variant: { id: string; label: string; size: string; price: number; turnaround: string }) => variant.id === selectedVariant) ?? product.variants[0];
+
+    // TODO: Generate placeholder gradient based on product name for variety
+    // const placeholderStyle = `rounded-[1.15rem] bg-[${getProductPlaceholderGradient(product.name)}] p-2`;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,7 +36,7 @@ export default function ProductCustomizer({ product }: { product: Product }) {
       <div className="space-y-3">
         <label className="block text-sm font-medium text-[var(--color-foreground)]">Choose size</label>
         <div className="grid gap-3 sm:grid-cols-3">
-          {product.variants.map((variant) => (
+          {product.variants.map((variant: { id: string; label: string; size: string; price: number; turnaround: string }) => (
             <button
               key={variant.id}
               type="button"

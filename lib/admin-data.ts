@@ -1,8 +1,10 @@
+export type OrderStatus = "placed" | "preview_in_progress" | "preview_ready" | "approved" | "changes_requested" | "in_production" | "shipped" | "delivered";
+
 export type AdminOrder = {
   id: string;
   customer: string;
   item: string;
-  status: string;
+  status: OrderStatus;
   amount: number;
   previewStatus: "pending" | "ready" | "approved";
   walletCredit: number;

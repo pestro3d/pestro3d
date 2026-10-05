@@ -4,7 +4,7 @@ import { useState } from "react";
 import { orderStatuses, sampleOrder, sampleOrderTimeline, type OrderStatus } from "@/lib/order-data";
 
 export default function OrderTrackingClient() {
-  const [status, setStatus] = useState<OrderStatus>(sampleOrder.status);
+  const [status, setStatus] = useState<OrderStatus>("preview_ready");
 
   const statusSteps = sampleOrderTimeline.map((step) => ({
     ...step,
@@ -25,7 +25,7 @@ export default function OrderTrackingClient() {
 
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
         <section className="space-y-6 rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.45)] p-5">
-          <div className="rounded-[1.5rem] border border-[var(--color-border)] bg-[linear-gradient(180deg,#f2e7de_0%,#e3d0bd_100%)] p-4">
+          <div className="rounded-[1.5rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,#f5e8dd_0%,#eed7c1_100%)] p-4">
             <div className="grid h-[24rem] grid-cols-2 gap-4 rounded-[1.3rem] bg-[rgba(255,255,255,0.22)] p-4">
               <div className="rounded-[1.1rem] bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.25),transparent_30%),linear-gradient(145deg,#d2a272_0%,#7f563d_52%,#241e1b_100%)]" />
               <div className="rounded-[1.1rem] bg-[linear-gradient(180deg,#efe0d1_0%,#c99162_38%,#623f33_100%)] p-3">

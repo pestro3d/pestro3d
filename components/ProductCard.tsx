@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import type { Product } from "@/lib/store-data";
 
@@ -9,10 +11,8 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="p-3">
         <div className="grid h-64 grid-cols-2 gap-2 rounded-[1.3rem] bg-[linear-gradient(180deg,#f1e4d9,#e7d1b7)] p-2">
-          <div className="rounded-[1.15rem] bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.32),rgba(0,0,0,0.14)),linear-gradient(160deg,#d8a36d_0%,#7d4d39_55%,#2a2725_100%)]" />
-          <div className="rounded-[1.15rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2">
-            <div className="mx-auto mt-8 h-36 w-20 rounded-[48%_52%_46%_54%/43%_47%_53%_57%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)] shadow-[0_22px_26px_rgba(63,35,26,0.2)]" />
-          </div>
+          <div className="rounded-[1.15rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2" />
+          <div className="rounded-[1.15rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2" />
         </div>
       </div>
 

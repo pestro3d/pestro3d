@@ -1,20 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { adminDiscounts, adminOrders } from "@/lib/admin-data";
+import { adminDiscounts } from "@/lib/admin-data";
+import type { AdminOrder, OrderStatus } from "@/lib/admin-data";
 
-export default function AdminDashboardClient() {
-  const [orders, setOrders] = useState(adminOrders);
+interface AdminDashboardClientProps {
+  initialOrders: AdminOrder[];
+}
+
+export default function AdminDashboardClient({ initialOrders }: AdminDashboardClientProps) {
+  const [orders, setOrders] = useState<AdminOrder[]>(initialOrders ?? []);
   const [walletCredit, setWalletCredit] = useState(350);
 
-  const updateStatus = (id: string, status: string) => {
+  const updateStatus = (id: string, status: OrderStatus) => {
     setOrders((current) =>
       current.map((order) => (order.id === id ? { ...order, status } : order))
     );
   };
 
   const creditWallet = () => {
-    setWalletCredit((current) => current + 250);
+    setWalletCredit((current: number) => current + 250);
   };
 
   return (
@@ -63,12 +68,17 @@ export default function AdminDashboardClient() {
                 <p className="font-semibold text-[var(--color-foreground)]">{order.customer}</p>
                 <p className="text-[var(--color-muted)]">{order.id}</p>
               </div>
-              <div className="text-[var(--color-foreground)]">{order.item}</div>
+              <div className="flex items-center gap-2">
+                <div className="h-10 w-10 rounded-[0.65rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2">
+                  <div className="mx-auto mt-2 h-5 w-6 rounded-[40%_60%_50%_50%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)]" />
+                </div>
+                <span className="text-[var(--color-foreground)]">{order.item}</span>
+              </div>
               <div className="text-[var(--color-foreground)]">{order.status}</div>
               <div>
                 <select
                   value={order.status}
-                  onChange={(event) => updateStatus(order.id, event.target.value)}
+                  onChange={(event: React.ChangeEvent<HTMLSelectElement>) => updateStatus(order.id, event.target.value as OrderStatus)}
                   className="w-full rounded-[0.75rem] border border-[var(--color-border)] bg-white/45 px-2 py-2 text-sm text-[var(--color-foreground)] outline-none"
                 >
                   <option value="placed">Placed</option>

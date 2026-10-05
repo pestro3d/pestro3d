@@ -8,6 +8,7 @@ export type CartItem = {
 
 export const WELCOME_DISCOUNT_PERCENT = 10;
 export const DEFAULT_WALLET_BALANCE = 1200;
+export const SHIPPING_COST = 249;
 
 export function calculateTotals({
   items,
@@ -21,18 +22,18 @@ export function calculateTotals({
   welcomeDiscount?: boolean;
 }) {
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const welcomeDiscountValue = welcomeDiscount ? (subtotal * WELCOME_DISCOUNT_PERCENT) / 100 : 0;
-  const walletValue = walletApplied ? Math.min(walletBalance, subtotal - welcomeDiscountValue) : 0;
-  const shipping = subtotal > 0 ? 249 : 0;
-  const total = Math.max(0, subtotal - welcomeDiscountValue - walletValue + shipping);
+  const discount = welcomeDiscount ? (subtotal * WELCOME_DISCOUNT_PERCENT) / 100 : 0;
+  const wallet = walletApplied ? Math.min(walletBalance, subtotal - discount) : 0;
+  const shipping = subtotal > 0 ? SHIPPING_COST : 0;
+  const total = Math.max(0, subtotal - discount - wallet + shipping);
 
   return {
     subtotal,
-    welcomeDiscountValue,
-    walletValue,
+    welcomeDiscountValue: discount,
+    walletValue: wallet,
     shipping,
     total,
-    walletBalanceAfter: Math.max(0, walletBalance - walletValue),
+    walletBalanceAfter: Math.max(0, walletBalance - wallet),
   };
 }
 

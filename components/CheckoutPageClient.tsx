@@ -12,7 +12,8 @@ export default function CheckoutPageClient() {
   const [walletApplied, setWalletApplied] = useState(true);
   const [discountCode, setDiscountCode] = useState("WELCOME10");
   const [submitted, setSubmitted] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const [paymentStatus, setPaymentStatus] = useState<{ success: boolean; message: string } | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const totals = useMemo(
     () =>
@@ -26,9 +27,20 @@ export default function CheckoutPageClient() {
   );
 
   const handleCheckout = async () => {
-    const response = await submitPayment({ amount: totals.total, orderId: "ORD-1001" });
-    setPaymentStatus(response.message);
-    setSubmitted(true);
+    if (totals.total <= 0) return;
+
+    setIsProcessing(true);
+    setPaymentStatus(null);
+
+    try {
+      const response = await submitPayment({ amount: totals.total, orderId: "ORD-1001" });
+      setPaymentStatus({ success: response.status === "pending", message: response.message });
+      setSubmitted(true);
+    } catch {
+      setPaymentStatus({ success: false, message: "Payment failed. Please try again." });
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -61,7 +73,7 @@ export default function CheckoutPageClient() {
             <input id="gift-message" value={giftMessage} onChange={(event) => setGiftMessage(event.target.value)} className="w-full rounded-[0.9rem] border border-[var(--color-border)] bg-white/50 px-3 py-2.5 text-sm text-[var(--color-foreground)] outline-none" />
           </div>
 
-          <div className="rounded-[1.2rem] border border-[var(--color-border)] bg-white/35 p-4">
+          <div className="mt-5 rounded-[1.2rem] border border-[var(--color-border)] bg-white/35 p-4">
             <div className="flex items-center justify-between gap-3">
               <span className="text-sm text-[var(--color-muted)]">Discount code</span>
               <input value={discountCode} onChange={(event) => setDiscountCode(event.target.value)} className="w-32 rounded-[0.8rem] border border-[var(--color-border)] bg-white/50 px-2 py-2 text-sm text-[var(--color-foreground)] outline-none" />
@@ -76,10 +88,16 @@ export default function CheckoutPageClient() {
         <aside className="rounded-[1.7rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.48)] p-5">
           <h2 className="text-2xl text-[var(--color-foreground)]">Summary</h2>
 
-          <div className="mt-5 space-y-3 text-sm text-[var(--color-muted)]">
-            <div className="flex items-center justify-between">
-              <span>Miniature Portrait</span>
-              <span className="text-[var(--color-foreground)]">₹4700</span>
+          <div className="mt-5 space-y-4 rounded-[1.2rem] border border-[var(--color-border)] bg-white/30 p-4">
+            <div className="flex items-center gap-4 rounded-[1rem] border border-[var(--color-border)] bg-white/50 p-3">
+              <div className="h-16 w-12 rounded-[1.1rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2 flex items-center justify-center">
+                <div className="h-8 w-6 rounded-[40%_60%_45%_55%/45%_45%_55%_55%] bg-[linear-gradient(180deg,#f4d8b3_0%,#bf7a50_58%,#4d2d28_100%)]" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-[var(--color-foreground)]">Miniature Portrait</p>
+                <p className="text-xs text-[var(--color-muted)]">12 cm • hand-painted finish</p>
+              </div>
+              <span className="text-lg font-semibold text-[var(--color-foreground)]">₹4700</span>
             </div>
             <div className="flex items-center justify-between">
               <span>Welcome offer</span>
@@ -95,23 +113,30 @@ export default function CheckoutPageClient() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
+          <div className="mt-6 flex items-center justify-between border-t border-[var(--color-border)] pt-4">
             <span className="text-lg font-semibold text-[var(--color-foreground)]">Due today</span>
             <span className="text-2xl font-semibold text-[var(--color-foreground)]">₹{totals.total}</span>
           </div>
 
           <button
             type="button"
+            disabled={totals.total <= 0 || isProcessing}
             onClick={handleCheckout}
-            className="mt-6 w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(157,95,63,0.2)] hover:-translate-y-0.5 hover:bg-[#874e35]"
+            className="mt-6 w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(157,95,63,0.2)] hover:-translate-y-0.5 hover:bg-[#874e35] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitted ? "Order placed" : "Pay now"}
+            {isProcessing ? "Processing..." : submitted ? "Order placed" : "Pay now"}
           </button>
 
           {paymentStatus && (
-            <p className="mt-4 rounded-[0.9rem] border border-[var(--color-border)] bg-white/35 p-3 text-sm text-[var(--color-muted)]">
-              {paymentStatus}
-            </p>
+            <div
+              className={`mt-4 rounded-[0.9rem] border p-3 text-sm ${
+                paymentStatus.success
+                  ? "border-green-500 bg-green-50 text-green-700"
+                  : "border-red-500 bg-red-50 text-red-700"
+              }`}
+            >
+              {paymentStatus.message}
+            </div>
           )}
         </aside>
       </div>
