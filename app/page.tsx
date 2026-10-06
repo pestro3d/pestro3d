@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { products } from "@/lib/store-data";
 
 const process = [
   {
@@ -108,6 +109,45 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+            <section className="section shop-section">
+              <div className="section-heading">
+                <div>
+                  <p className="eyebrow"><span /> The collection</p>
+                  <h2>Featured miniatures</h2>
+                </div>
+                <p>Hand-picked pieces that capture the essence of your most cherished memories</p>
+              </div>
+              <div className="shop-grid">
+                {products.slice(0, 4).map((product) => (
+                  <article className="shop-card" key={product.slug}>
+                    <div className="shop-image-wrap">
+                      <Image
+                        src={product.image}
+                        alt={product.imageAlt}
+                        fill
+                        sizes="(max-width: 1024px) 90vw, 50vw"
+                        className="shop-image"
+                      />
+                    </div>
+                    <div className="shop-content">
+                      <span className="shop-category">{product.category}</span>
+                      <h3 className="shop-name">{product.name}</h3>
+                      <p className="shop-tagline">{product.tagline}</p>
+                      <div className="shop-price">₹{product.basePrice}</div>
+                    </div>
+                    <Link href={`/products/${product.slug}`} className="shop-link">
+                      View details <span>↗</span>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+              <div className="shop-see-all">
+                <Link href="/shop" className="button button-light">
+                  Explore the full collection <span>↗</span>
+                </Link>
+              </div>
+            </section>
 
       <section className="showcase-section">
         <div className="showcase-image">
