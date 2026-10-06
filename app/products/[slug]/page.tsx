@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductCustomizer from "@/components/ProductCustomizer";
-import ProductImagePlaceholder from "@/components/ProductImagePlaceholder";
 import { products } from "@/lib/store-data";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
@@ -23,10 +23,17 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       </div>
 
       <section className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(180deg,#f4eae1_0%,#e7d4c0_100%)] p-4">
-          <div className="grid h-[34rem] grid-cols-2 gap-4 rounded-[1.5rem] bg-[rgba(255,255,255,0.35)] p-4">
-            <ProductImagePlaceholder variant="detail" label="Reference photo" />
-            <ProductImagePlaceholder variant="detail" label="3D proof" />
+        <div className="relative min-h-[34rem] overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(180deg,#f4eae1_0%,#e7d4c0_100%)] p-4">
+          <Image
+            src={product.image}
+            alt={product.imageAlt}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-x-4 bottom-4 rounded-[1.25rem] bg-[rgba(36,29,27,0.72)] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+            Finished product example
           </div>
         </div>
 

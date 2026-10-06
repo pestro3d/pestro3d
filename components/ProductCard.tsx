@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/store-data";
 
@@ -9,11 +10,14 @@ export default function ProductCard({ product }: { product: Product }) {
       href={`/products/${product.slug}`}
       className="group overflow-hidden rounded-[1.75rem] border border-[var(--color-border)] bg-[rgba(255,255,255,0.35)]"
     >
-      <div className="p-3">
-        <div className="grid h-64 grid-cols-2 gap-2 rounded-[1.3rem] bg-[linear-gradient(180deg,#f1e4d9,#e7d1b7)] p-2">
-          <div className="rounded-[1.15rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2" />
-          <div className="rounded-[1.15rem] bg-[linear-gradient(180deg,#efe0ce_0%,#d6b18f_38%,#7e4b39_100%)] p-2" />
-        </div>
+      <div className="relative h-64 overflow-hidden rounded-[1.3rem] bg-[linear-gradient(180deg,#f1e4d9,#e7d1b7)]">
+        <Image
+          src={product.image}
+          alt={product.imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
       </div>
 
       <div className="border-t border-[var(--color-border)] px-4 pb-4 pt-3">
