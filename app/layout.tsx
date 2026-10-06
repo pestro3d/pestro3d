@@ -27,34 +27,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${serif.variable} ${sans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-[var(--color-background)] text-[var(--color-foreground)]">
-        <header className="sticky top-0 z-50 flex items-center justify-between border-b border-[var(--color-border)] bg-white/80 backdrop-blur-md px-6 py-4">
-          <Link href="/" className="text-2xl font-semibold tracking-tight text-[var(--color-accent)]">
-            Pestro3D
-          </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium text-[var(--color-muted)]">
-            <Link href="/shop" className="hover:text-[var(--color-foreground)]">
-              Shop
-            </Link>
-            <Link href="/about" className="hover:text-[var(--color-foreground)]">
-              About
-            </Link>
-            <Link href="/corporate" className="hover:text-[var(--color-foreground)]">
-              Corporate
-            </Link>
-            <Link href="/cart" className="hover:text-[var(--color-foreground)]">
-              Cart
-            </Link>
-            <Link href="/contact" className="hover:text-[var(--color-foreground)]">
-              Contact
-            </Link>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body>
+        <header className="site-header">
+          <Link href="/" className="logo">Pestro<span>3D</span></Link>
+          <nav className="site-nav" aria-label="Primary navigation">
+            <Link href="/shop">Shop</Link>
+            <Link href="/about">Our story</Link>
+            <Link href="/corporate">Corporate</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
+          <div className="header-actions">
+            <Link href="/orders" className="header-cart" aria-label="View orders">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Orders
+            </Link>
+            <Link href="/shop" className="nav-cta">Start your order</Link>
+          </div>
         </header>
-        <main className="min-h-[calc(100vh-8rem)]">{children}</main>
+        <main>{children}</main>
+        <footer className="site-footer">
+          <div>
+            <div className="footer-brand">Pestro3D</div>
+            <div className="footer-note">Custom miniature keepsakes made to feel personal.</div>
+          </div>
+          <nav className="footer-links" aria-label="Footer navigation">
+            <Link href="/shop">Shop</Link>
+            <Link href="/about">About</Link>
+            <Link href="/corporate">Corporate gifting</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/shipping">Shipping & returns</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </nav>
+        </footer>
       </body>
     </html>
   );
