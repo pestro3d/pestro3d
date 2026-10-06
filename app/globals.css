@@ -188,7 +188,16 @@ img { display: block; max-width: 100%; }
   .site-footer { align-items: flex-start; flex-direction: column; }
   .section { padding: 2rem 1rem; }
   .shop-grid { grid-template-columns: 1fr !important; }
-}
+
+    /* Shop section responsive styles */
+    .shop-section { padding: 2rem 1rem; }
+    .shop-heading { font-size: 1.8rem; }
+    .shop-category { font-size: .7rem; }
+    .shop-name { font-size: 1.2rem; }
+    .shop-tagline { font-size: .8rem; }
+    .shop-price { font-size: .8rem; }
+    .shop-see-all { text-align: center; margin-top: 1rem; }
+  }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
