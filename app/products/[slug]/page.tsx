@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductCustomizer from "@/components/ProductCustomizer";
-import { products } from "@/lib/store-data";
+import { getCatalogProduct } from "@/lib/catalog";
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products.find((entry) => entry.slug === params.slug);
+export const dynamic = "force-dynamic";
+
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const product = await getCatalogProduct(params.slug);
 
   if (!product) {
     notFound();
@@ -28,6 +30,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             src={product.image}
             alt={product.imageAlt}
             fill
+            unoptimized
             priority
             sizes="(max-width: 1024px) 100vw, 45vw"
             className="object-cover"

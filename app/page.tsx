@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/lib/store-data";
+import { getCatalogProducts } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 const process = [
   {
@@ -41,7 +43,9 @@ const gallery = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getCatalogProducts();
+
   return (
     <main>
       <section className="hero-section">

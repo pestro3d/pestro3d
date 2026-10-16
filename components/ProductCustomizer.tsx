@@ -6,14 +6,20 @@ import type { Product } from "@/lib/store-data";
 
 export default function ProductCustomizer({ product }: { product: Product }) {
   const router = useRouter();
-  const [selectedVariant, setSelectedVariant] = useState(product.variants[0].id);
+  const [selectedVariant, setSelectedVariant] = useState(product.variants[0]?.id ?? "");
   const [occasion, setOccasion] = useState("Anniversary");
   const [notes, setNotes] = useState("");
   const [giftMessage, setGiftMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const activeVariant = product.variants.find((variant: { id: string; label: string; size: string; price: number; turnaround: string }) => variant.id === selectedVariant) ?? product.variants[0];
+  const activeVariant = product.variants.find((variant) => variant.id === selectedVariant) ?? product.variants[0] ?? {
+    id: "base",
+    label: "Standard",
+    size: "",
+    price: product.basePrice,
+    turnaround: "",
+  };
 
     // TODO: Generate placeholder gradient based on product name for variety
     // const placeholderStyle = `rounded-[1.15rem] bg-[${getProductPlaceholderGradient(product.name)}] p-2`;
@@ -34,9 +40,9 @@ export default function ProductCustomizer({ product }: { product: Product }) {
       </div>
 
       <div className="space-y-3">
-        <label className="block text-sm font-medium text-[#4c1c5c]">Choose size</label>
+        <label className="block text-sm font-medium text-[#4c1c5c]">Choose option</label>
         <div className="grid gap-3 sm:grid-cols-3">
-          {product.variants.map((variant: { id: string; label: string; size: string; price: number; turnaround: string }) => (
+          {product.variants.map((variant) => (
             <button
               key={variant.id}
               type="button"
@@ -49,6 +55,9 @@ export default function ProductCustomizer({ product }: { product: Product }) {
               ].join(" ")}
             >
               <div className="text-sm font-semibold">{variant.label}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider">
+                {variant.optionType === "finish" ? "Finish" : variant.optionType === "addon" ? "Add-on" : "Size"}
+              </div>
               <div className="mt-1 text-xs">₹{variant.price}</div>
             </button>
           ))}
@@ -121,13 +130,13 @@ export default function ProductCustomizer({ product }: { product: Product }) {
 
       <div className="rounded-[1.1rem] border border-[#d4c4e8] bg-white/35 p-4">
         <div className="flex items-center justify-between gap-3 text-sm">
-          <span className="text-[var(--color-muted)]">Selected size</span>
+          <span className="text-[var(--color-muted)]">Selected option</span>
         <span className="font-semibold text-[#4c1c5c]">{activeVariant.label}</span>
         </div>
-        <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+        {activeVariant.turnaround && <div className="mt-3 flex items-center justify-between gap-3 text-sm">
           <span className="text-[var(--color-muted)]">Delivery</span>
         <span className="font-semibold text-[#4c1c5c]">{activeVariant.turnaround}</span>
-        </div>
+        </div>}
       <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#d4c4e8] pt-3">
         <span className="text-lg font-semibold text-[#4c1c5c]">Total</span>
         <span className="text-2xl font-semibold text-[#4c1c5c]">₹{activeVariant.price}</span>

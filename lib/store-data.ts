@@ -8,7 +8,8 @@ export type Product = {
   featuredNote: string;
   image: string;
   imageAlt: string;
-  variants: { id: string; label: string; size: string; price: number; turnaround: string }[];
+  isActive?: boolean;
+  variants: { id: string; label: string; size: string; price: number; turnaround: string; optionType?: "size" | "finish" | "addon" }[];
   reviews: { name: string; title: string; quote: string }[];
   faqs: { question: string; answer: string }[];
 };

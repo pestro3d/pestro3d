@@ -1,8 +1,15 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/lib/store-data";
+import { getCatalogProducts } from "@/lib/catalog";
 
-export default function ShopPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ShopPage() {
+  await connection();
+  const products = await getCatalogProducts();
+  const startingPrice = products.length ? Math.min(...products.map((product) => product.basePrice)) : 0;
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 py-8 sm:px-8 lg:px-10">
       <header className="mb-8 flex items-center justify-between">
@@ -31,7 +38,7 @@ export default function ShopPage() {
 
         <div className="rounded-[1.75rem] border border-[var(--color-border)] bg-[linear-gradient(135deg,#f5e8dd_0%,#eed7c1_100%)] p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">Starting at</p>
-          <div className="mt-3 font-display text-5xl text-[var(--color-foreground)]">₹4,000</div>
+          <div className="mt-3 font-display text-5xl text-[var(--color-foreground)]">₹{startingPrice.toLocaleString("en-IN")}</div>
           <p className="mt-3 text-sm text-[var(--color-muted)]">for the 9 cm portrait keepsake with preview-before-production included.</p>
         </div>
       </section>
